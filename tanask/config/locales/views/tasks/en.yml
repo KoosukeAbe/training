@@ -3,6 +3,7 @@ en:
     index:
       title: 'Task List'
       created_at: 'Created at '
+      name: 'Task Name'
     new:
       title: 'Add New Task'
     show:

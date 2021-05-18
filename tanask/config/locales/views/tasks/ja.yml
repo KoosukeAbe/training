@@ -3,6 +3,7 @@ ja:
     index:
       title: 'タスク一覧'
       created_at: '作成日時'
+      name: 'タスク名'
     new:
       title: 'タスク登録'
     show:
