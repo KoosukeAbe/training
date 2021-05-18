@@ -28,6 +28,13 @@ RSpec.describe 'TasksControllers', type: :system do
     end
   end
 
+  context 'If the use has three tasks' do
+    it 'order according to updated_at' do
+
+    end
+
+  end
+
   describe 'show' do
     context 'If the user has a task' do
       it 'show detail page' do
