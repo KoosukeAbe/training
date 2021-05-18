@@ -2,12 +2,10 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
 
   def index
-    # raise # FOR DEBUG!! 500 error
     @tasks = Task.all
   end
 
   def show
-    # p @task.name
   end
 
   def new
@@ -34,7 +32,7 @@ class TasksController < ApplicationController
     if @task.update(task_params) # success in submit
       flash[:success] = t('flash.tasks.update.success')
       redirect_to @task # make GET method
-      # GET -> tasks/:id -> tasks/show?
+      # GET -> TaskController#show -> tasks/show?
     else # false in submit
       flash[:danger] = t('flash.tasks.update.danger')
       render :edit # Not make GET method
@@ -55,7 +53,5 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
-    #     # p @task.name
-    #     # p "#{params[:id]}"
   end
 end
