@@ -5,7 +5,6 @@ RSpec.describe 'TasksControllers', type: :system do
   # let!(:task2) { create(:task_template, name: 'test_name2', description: 'test_description2') }
 
   describe 'index' do
-
     it 'show Task List' do
       visit '/tasks'
       expect(page).to have_content('タスク一覧')
@@ -32,11 +31,10 @@ RSpec.describe 'TasksControllers', type: :system do
     let!(:task3) { create(:task_template, name: 'third', description: 'test_description') }
     it 'order according to updated_at' do
       visit '/tasks'
-      expect(all('tbody tr')[0].text).to have_content("third")
-      expect(all('tbody tr')[1].text).to have_content("second")
-      expect(all('tbody tr')[2].text).to have_content("first")
+      expect(all('tbody tr')[0].text).to have_content('third')
+      expect(all('tbody tr')[1].text).to have_content('second')
+      expect(all('tbody tr')[2].text).to have_content('first')
     end
-
   end
 
   describe 'show' do
