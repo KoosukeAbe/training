@@ -11,15 +11,15 @@ module ErrorHandlers
 
   private
 
-  def rescue403(error)
+  def rescue403(_)
     render 'errors/403', status: :forbidden
   end
 
-  def rescue404(error)
+  def rescue404(_)
     render 'errors/404', status: :not_found
   end
 
-  def rescue500(error)
+  def rescue500(_)
     render '/errors/500', status: :internal_server_error
   end
 end
