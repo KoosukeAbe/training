@@ -1,9 +1,9 @@
 ja:
   activerecord:
     models:
-      tasks: 'タスク'
+      task: 'タスク'
     attributes:
-      tasks:
+      task:
         name: 'タスク名'
         description: 'タスク概要'
         created_at: '作成日時'
