@@ -27,8 +27,14 @@ RSpec.describe 'TasksControllers', type: :system do
   end
 
   context 'If the use has three tasks' do
+    let!(:task1) { create(:task_template, name: 'first', description: 'test_description') }
+    let!(:task2) { create(:task_template, name: 'second', description: 'test_description') }
+    let!(:task3) { create(:task_template, name: 'third', description: 'test_description') }
     it 'order according to updated_at' do
-
+      visit '/tasks'
+      expect(all('tbody tr')[0].text).to have_content("third")
+      expect(all('tbody tr')[1].text).to have_content("second")
+      expect(all('tbody tr')[2].text).to have_content("first")
     end
 
   end
