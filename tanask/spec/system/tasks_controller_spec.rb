@@ -35,7 +35,6 @@ RSpec.describe 'TasksControllers', type: :system do
       expect(all('tbody tr')[0].text).to have_content('third')
       expect(all('tbody tr')[1].text).to have_content('second')
       expect(all('tbody tr')[2].text).to have_content('first')
-      take_screenshot
     end
   end
 
