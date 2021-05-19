@@ -20,7 +20,7 @@ class TasksController < ApplicationController
       redirect_to @task # make GET method
       # GET -> tasks/:id -> tasks/show?
     else # false in submit
-      flash[:danger] = t('flash.tasks.create.danger')
+      flash.now[:danger] = t('flash.tasks.create.danger')
       render :new # Not make GET method
     end
   end
