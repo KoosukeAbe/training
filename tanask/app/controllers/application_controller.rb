@@ -3,5 +3,5 @@ class ApplicationController < ActionController::Base
 
   class IpAddressRejected < ActionController::ActionControllerError; end
 
-  include ErrorHandlers if Rails.env.production? || Rails.env.staging? || Rails.env.test?
+  include ErrorHandlers unless Rails.env.development?
 end

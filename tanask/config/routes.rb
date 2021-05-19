@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   resources :tasks
 
-  # for error (un exist URL)
+  # for error (unexist URL)
   get '*anything' => 'errors#routing_error'
 end

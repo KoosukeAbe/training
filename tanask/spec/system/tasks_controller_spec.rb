@@ -1,27 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe 'TasksControllers', type: :system do
-  let!(:task1) { create(:task_template, name: 'test_name1', description: 'test_description1') }
-  let!(:task2) { create(:task_template, name: 'test_name2', description: 'test_description2') }
+  # let!(:task1) { create(:task_template, name: 'test_name1', description: 'test_description1') }
+  # let!(:task2) { create(:task_template, name: 'test_name2', description: 'test_description2') }
 
   describe 'index' do
-    before do
-      visit '/tasks'
-    end
 
     it 'show Task List' do
+      visit '/tasks'
       expect(page).to have_content('タスク一覧')
     end
 
-    context 'If the user has a task' do
-      it 'show test_name1' do
-        expect(page).to have_content('test_name1')
-      end
-    end
-
     it 'can go to new task page' do
+      visit '/tasks'
       click_on 'Make New Task'
       expect(page).to have_content('タスク登録')
+    end
+
+    context 'If the user has a task' do
+      let!(:task1) { create(:task_template, name: 'test_name1', description: 'test_description1') }
+      it 'show test_name1' do
+        visit '/tasks'
+        expect(page).to have_content('test_name1')
+      end
     end
   end
 
@@ -34,6 +35,7 @@ RSpec.describe 'TasksControllers', type: :system do
 
   describe 'show' do
     context 'If the user has a task' do
+      let!(:task1) { create(:task_template, name: 'test_name1', description: 'test_description1') }
       it 'show detail page' do
         visit task_path(task1)
         expect(page).to have_content('タスク詳細')
@@ -60,6 +62,7 @@ RSpec.describe 'TasksControllers', type: :system do
   end
 
   describe 'edit' do
+    let!(:task1) { create(:task_template, name: 'test_name1', description: 'test_description1') }
     before do
       visit edit_task_path(task1)
     end
@@ -68,9 +71,7 @@ RSpec.describe 'TasksControllers', type: :system do
       it 'can see detail page' do
         expect(page).to have_content('タスク編集')
       end
-    end
 
-    context 'when user has task' do
       it 'cat edit task' do
         fill_in 'Name', with: 'edited_task1'
         fill_in 'Description', with: 'edited_description1'
@@ -82,6 +83,8 @@ RSpec.describe 'TasksControllers', type: :system do
 
   describe 'delete' do
     context 'when user has task' do
+      let!(:task1) { create(:task_template, name: 'test_name1', description: 'test_description1') }
+      let!(:task2) { create(:task_template, name: 'test_name2', description: 'test_description2') }
       it 'can delete' do
         visit task_path(task2)
         click_on 'Delete this task'
