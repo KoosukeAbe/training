@@ -75,7 +75,17 @@ RSpec.describe 'TasksControllers', type: :system do
           expect(page).to have_content('タスク名は1文字以上で入力してください')
         end
       end
-      co
+      context 'When task have too long name' do
+        it 'show validation error and flash' do
+          fill_in 'Name', with: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+          fill_in 'Description', with: 'newdescription1'
+          click_on '提出'
+          expect(page).to have_content('タスクの登録に失敗しました')
+          expect(page).to have_content('タスク名を入力してください')
+          expect(page).to have_content('タスク名は1文字以上で入力してください')
+        end
+
+      end
 
     end
   end
