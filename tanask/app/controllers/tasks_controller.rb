@@ -17,11 +17,13 @@ class TasksController < ApplicationController
 
     if @task.save # success in submit
       flash[:success] = t('flash.tasks.create.success')
-      redirect_to @task # make GET method
+      # redirect_to @task # make GET method
+      redirect_to tasks_url
       # GET -> tasks/:id -> tasks/show?
     else # false in submit
       flash.now[:danger] = t('flash.tasks.create.danger')
-      render :new # Not make GET method
+      # render :new # Not make GET method
+      render 'tasks/new'
     end
   end
 

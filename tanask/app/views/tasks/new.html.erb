@@ -15,17 +15,9 @@
 
     <h1><%= t '.title'%></h1>
 
-    <% if @task.errors.any? %>
-      <div>
-        <ul style="color: red">
-          <% @task.errors.full_messages.each do |message| %>
-          <li><% message %></li>
-          <% end %>
-        </ul>
-      </div>
+    <%= form_with(model: @task, local: true) do |form| %>
+      <%= render partial: "tasks/form", locals: {task: @task} %>
     <% end %>
-
-    <%= render partial: "tasks/form", locals: {task: @task} %>
 
     <%= link_to 'Go back to Task List', tasks_path %>
 
