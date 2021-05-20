@@ -28,7 +28,7 @@ RSpec.describe 'TasksControllers', type: :system do
     let!(:task1) { create(:task_template, name: 'first', description: 'test_description', created_at: DateTime.new(2021, 1, 1, 0, 0, 0)) }
     let!(:task2) { create(:task_template, name: 'second', description: 'test_description', created_at: DateTime.new(2021, 2, 1, 0, 0, 0)) }
     let!(:task3) { create(:task_template, name: 'third', description: 'test_description', created_at: DateTime.new(2021, 3, 1, 0, 0, 0)) }
-    it 'order according to updated_at' do
+    it 'order according to created_at' do
       visit '/tasks'
       expect(all('tbody tr')[0].text).to have_content('third')
       expect(all('tbody tr')[1].text).to have_content('second')
