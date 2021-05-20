@@ -46,6 +46,7 @@ class TasksController < ApplicationController
     else
       flash.now[:danger] = t('flash.tasks.delete.danger')
       render :show
+    end
   end
 
   private # only for this class
