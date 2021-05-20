@@ -64,8 +64,8 @@ RSpec.describe 'TasksControllers', type: :system do
 
       context 'When task have no name' do
         it 'show validation error and flash' do
-          fill_in 'Name', with: ''
-          fill_in 'Description', with: 'newdescription1'
+          fill_in 'タスク名', with: ''
+          fill_in 'タスク概要', with: 'newdescription1'
           click_on '提出'
           expect(page).to have_content('タスクの登録に失敗しました')
           expect(page).to have_content('タスク名を入力してください')
@@ -74,8 +74,8 @@ RSpec.describe 'TasksControllers', type: :system do
       end
       context 'When task have too long name (51chars)' do
         it 'show validation error and flash' do
-          fill_in 'Name', with: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-          fill_in 'Description', with: 'newdescription1'
+          fill_in 'タスク名', with: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+          fill_in 'タスク概要', with: 'newdescription1'
           click_on '提出'
           expect(page).to have_content('タスクの登録に失敗しました')
           expect(page).to have_content('タスク名は50文字以内で入力してください')
@@ -83,8 +83,8 @@ RSpec.describe 'TasksControllers', type: :system do
       end
       context 'When task have too long description (101chars)' do
         it 'show validation error and flash' do
-          fill_in 'Name', with: 'newname1'
-          fill_in 'Description', with: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+          fill_in 'タスク名', with: 'newname1'
+          fill_in 'タスク概要', with: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
           click_on '提出'
           expect(page).to have_content('タスクの登録に失敗しました')
           expect(page).to have_content('タスク概要は100文字以内で入力してください')
