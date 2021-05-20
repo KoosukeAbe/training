@@ -53,12 +53,6 @@ def task_params
   params.require(:task).permit(:name, :description)
 end
 
-<<<<<<< HEAD
-  def set_task
-    @task = Task.find(params[:id])
-  end
-=======
 def set_task
   @task = Task.find(params[:id])
->>>>>>> rocky
 end
