@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'TasksControllers', type: :system do
   describe 'index' do
-
     it 'show Task List' do
       visit '/tasks'
       expect(page).to have_content('タスク一覧')
