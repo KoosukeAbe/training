@@ -17,6 +17,7 @@ ja:
       delete: 'このタスクを削除する'
     edit:
       title: 'タスク編集'
+      go_back_to_list: 'タスク一覧に戻る'
     submit:
       title: 'タスク登録'
       taskname: 'タスク名'

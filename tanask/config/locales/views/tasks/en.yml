@@ -19,6 +19,7 @@ en:
       delete: 'Delete this task'
     edit:
       title: 'Edit Task'
+      go_back_to_list: 'Go Back to Task List'
     submit:
       title: 'Make new task'
       taskname: 'Task Name'
