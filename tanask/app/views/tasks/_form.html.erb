@@ -1,8 +1,8 @@
 <%= form_for(@task) do |f| %>
-  <p><%= f.label :name, 'Task Name' %>
+  <p><%= f.label :name, t('tasks.submit.taskname') %>
      <%= f.text_field :name %></p>
 
-  <p><%= f.label :description, 'Description' %>
+  <p><%= f.label :description, t('tasks.submit.description') %>
      <%= f.text_field :description %></p>
 
   <p><%= f.submit t 'tasks.submit.button' %></p>

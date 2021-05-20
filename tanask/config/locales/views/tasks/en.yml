@@ -15,4 +15,7 @@ en:
     edit:
       title: 'Edit Task'
     submit:
+      title: 'Make new task'
+      taskname: 'Task Name'
+      description: 'Task Description'
       button: 'submit'
