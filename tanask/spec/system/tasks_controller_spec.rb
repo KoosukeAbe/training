@@ -26,9 +26,9 @@ RSpec.describe 'TasksControllers', type: :system do
 
   context 'If the user has three tasks' do
     before do
-      create(:task_template, name: 'first', description: 'test_description', created_at: DateTime.new(2021, 1, 1, 0, 0, 0))
-      create(:task_template, name: 'second', description: 'test_description', created_at: DateTime.new(2021, 2, 1, 0, 0, 0))
-      create(:task_template, name: 'third', description: 'test_description', created_at: DateTime.new(2021, 3, 1, 0, 0, 0))
+      create(:task_template, name: 'first', description: 'test_description', created_at: DateTime.new(2021, 1, 1, 0, 0, 0).in_time_zone)
+      create(:task_template, name: 'second', description: 'test_description', created_at: DateTime.new(2021, 2, 1, 0, 0, 0).in_time_zone)
+      create(:task_template, name: 'third', description: 'test_description', created_at: DateTime.new(2021, 3, 1, 0, 0, 0).in_time_zone)
     end
     it 'order according to created_at' do
       visit '/tasks'
