@@ -69,6 +69,7 @@ RSpec.describe 'TasksControllers', type: :system do
         fill_in 'Description', with: 'edited_description1'
         click_on '提出'
         expect(page).to have_content('edited_task1')
+        expect(current_path).to eq task_path(task1)
       end
     end
   end
