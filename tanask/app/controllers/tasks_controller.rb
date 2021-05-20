@@ -6,6 +6,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    # p @task.name
   end
 
   def new
@@ -15,13 +16,12 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
-    if @task.save # success in submit
-      flash[:success] = 'Task was submitted'
-      redirect_to @task # make GET method
-      # GET -> tasks/:id -> tasks/show?
-    else # false in submit
-      flash[:danger] = 'Task was NOT submitted'
-      render :new # Not make GET method
+    if @task.save
+      flash[:success] = t('flash.tasks.create.success')
+      redirect_to @task
+    else
+      flash.now[:danger] = t('flash.tasks.create.danger')
+      render :new
     end
   end
 
@@ -29,30 +29,31 @@ class TasksController < ApplicationController
   end
 
   def update
-    if @task.update(task_params) # success in submit
-      flash[:success] = 'Task was edited'
-      redirect_to @task # make GET method
-      # GET -> TaskController#show -> tasks/show?
-    else # false in submit
-      flash[:danger] = 'Task was NOT edited'
-      render :edit # Not make GET method
+    if @task.update(task_params)
+      flash[:success] = t('flash.tasks.update.success')
+      redirect_to @task
+    else
+      flash.now[:danger] = t('flash.tasks.update.danger')
+      render :edit
     end
   end
 
   def destroy
-    @task.destroy
-
-    flash[:success] = 'Task was deleted'
-    redirect_to @task # make GET method
+    if @task.destroy
+      flash[:success] = t('flash.tasks.delete.success')
+    else
+      flash.now[:danger] = t('flash.tasks.delete.danger')
+    end
+    redirect_to tasks_url
   end
-end
 
-private # only for this class
+  private # only for this class
 
-def task_params
-  params.require(:task).permit(:name, :description)
-end
+  def task_params
+    params.require(:task).permit(:name, :description)
+  end
 
-def set_task
-  @task = Task.find(params[:id])
+  def set_task
+    @task = Task.find(params[:id])
+  end
 end
