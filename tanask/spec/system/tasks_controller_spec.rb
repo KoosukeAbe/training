@@ -10,7 +10,7 @@ RSpec.describe 'TasksControllers', type: :system do
 
     it 'can go to new task page' do
       visit '/tasks'
-      click_on 'Make New Task'
+      click_on '新規タスク作成'
       expect(page).to have_content('タスク登録')
       expect(current_path).to eq new_task_path
     end
@@ -102,7 +102,7 @@ RSpec.describe 'TasksControllers', type: :system do
       let!(:task2) { create(:task_template, name: 'test_name2', description: 'test_description2') }
       it 'can delete' do
         visit task_path(task2)
-        click_on 'Delete this task'
+        click_on 'このタスクを削除する'
         expect {
           expect(page.accept_confirm)
           expect(page).to_not have_content('test_task2')
