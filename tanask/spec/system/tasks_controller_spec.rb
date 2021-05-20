@@ -24,7 +24,7 @@ RSpec.describe 'TasksControllers', type: :system do
     end
   end
 
-  context 'If the use has three tasks' do
+  context 'If the user has three tasks' do
     let!(:task1) { create(:task_template, name: 'first', description: 'test_description', created_at: DateTime.new(2021, 1, 1, 0, 0, 0)) }
     let!(:task2) { create(:task_template, name: 'second', description: 'test_description', created_at: DateTime.new(2021, 2, 1, 0, 0, 0)) }
     let!(:task3) { create(:task_template, name: 'third', description: 'test_description', created_at: DateTime.new(2021, 3, 1, 0, 0, 0)) }
