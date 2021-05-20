@@ -12,6 +12,7 @@ RSpec.describe 'TasksControllers', type: :system do
       visit '/tasks'
       click_on 'Make New Task'
       expect(page).to have_content('タスク登録')
+      expect(current_path).to eq new_task_path
     end
 
     context 'If the user has a task' do
