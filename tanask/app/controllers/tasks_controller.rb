@@ -6,7 +6,6 @@ class TasksController < ApplicationController
   end
 
   def show
-    # p @task.name
   end
 
   def new
@@ -47,7 +46,7 @@ class TasksController < ApplicationController
     redirect_to tasks_url
   end
 
-  private # only for this class
+  private
 
   def task_params
     params.require(:task).permit(:name, :description)

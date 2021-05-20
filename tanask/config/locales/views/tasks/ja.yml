@@ -4,11 +4,22 @@ ja:
       title: 'タスク一覧'
       created_at: '作成日時'
       name: 'タスク名'
+      make_new_task: '新規タスク作成'
     new:
       title: 'タスク登録'
+      go_back_to_list: 'タスク一覧に戻る'
     show:
       title: 'タスク詳細'
+      taskname: 'タスク名'
+      description: 'タスク概要'
+      go_back_to_list: 'タスク一覧に戻る'
+      go_to_edit: 'このタスクを編集する'
+      delete: 'このタスクを削除する'
     edit:
       title: 'タスク編集'
+      go_back_to_list: 'タスク一覧に戻る'
     submit:
+      title: 'タスク登録'
+      taskname: 'タスク名'
+      description: 'タスク概要'
       button: '提出'
