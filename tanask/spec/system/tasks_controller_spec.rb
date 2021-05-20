@@ -57,8 +57,8 @@ RSpec.describe 'TasksControllers', type: :system do
 
     context 'When task create' do
       it 'can add new task' do
-        fill_in 'Name', with: 'newtask1'
-        fill_in 'Description', with: 'newdescription1'
+        fill_in 'タスク名', with: 'newtask1'
+        fill_in 'タスク概要', with: 'newdescription1'
         click_on '提出'
         expect(page).to have_content('newtask1')
       end
@@ -77,8 +77,8 @@ RSpec.describe 'TasksControllers', type: :system do
       end
 
       it 'cat edit task' do
-        fill_in 'Name', with: 'edited_task1'
-        fill_in 'Description', with: 'edited_description1'
+        fill_in 'タスク名', with: 'edited_task1'
+        fill_in 'タスク概要', with: 'edited_description1'
         click_on '提出'
         expect(page).to have_content('edited_task1')
         expect(page).to have_content('タスクが更新されました')
@@ -88,8 +88,8 @@ RSpec.describe 'TasksControllers', type: :system do
 
     context 'when user make no name task' do
       it 'show error' do
-        fill_in 'Name', with: ''
-        fill_in 'Description', with: 'edited_description1'
+        fill_in 'タスク名', with: ''
+        fill_in 'タスク概要', with: 'edited_description1'
         click_on '提出'
         expect(page).to have_content('タスクの更新に失敗しました')
       end
