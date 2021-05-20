@@ -2,9 +2,6 @@ require 'rails_helper'
 require 'date'
 
 RSpec.describe 'TasksControllers', type: :system do
-  # let!(:task1) { create(:task_template, name: 'test_name1', description: 'test_description1') }
-  # let!(:task2) { create(:task_template, name: 'test_name2', description: 'test_description2') }
-
   describe 'index' do
     it 'show Task List' do
       visit '/tasks'
@@ -15,6 +12,7 @@ RSpec.describe 'TasksControllers', type: :system do
       visit '/tasks'
       click_on 'Make New Task'
       expect(page).to have_content('タスク登録')
+      expect(current_path).to eq new_task_path
     end
 
     context 'If the user has a task' do
@@ -105,12 +103,25 @@ RSpec.describe 'TasksControllers', type: :system do
       it 'can see detail page' do
         expect(page).to have_content('タスク編集')
       end
+    end
 
+    context 'when user has task' do
       it 'cat edit task' do
         fill_in 'Name', with: 'edited_task1'
         fill_in 'Description', with: 'edited_description1'
         click_on '提出'
         expect(page).to have_content('edited_task1')
+        expect(page).to have_content('タスクが更新されました')
+        expect(current_path).to eq task_path(task1)
+      end
+    end
+
+    context 'when user make no name task' do
+      it 'show error' do
+        fill_in 'Name', with: ''
+        fill_in 'Description', with: 'edited_description1'
+        click_on '提出'
+        expect(page).to have_content('タスクの更新に失敗しました')
       end
     end
   end

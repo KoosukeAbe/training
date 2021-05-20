@@ -6,6 +6,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    # p @task.name
   end
 
   def new
@@ -15,15 +16,12 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
-    if @task.save # success in submit
+    if @task.save
       flash[:success] = t('flash.tasks.create.success')
-      # redirect_to @task # make GET method
-      redirect_to tasks_url
-      # GET -> tasks/:id -> tasks/show?
-    else # false in submit
+      redirect_to @task
+    else
       flash.now[:danger] = t('flash.tasks.create.danger')
-      # render :new # Not make GET method
-      render 'tasks/new'
+      render :new
     end
   end
 
@@ -31,20 +29,22 @@ class TasksController < ApplicationController
   end
 
   def update
-    if @task.update(task_params) # success in submit
+    if @task.update(task_params)
       flash[:success] = t('flash.tasks.update.success')
-      redirect_to @task # make GET method
-      # GET -> TaskController#show -> tasks/show?
-    else # false in submit
-      flash[:danger] = t('flash.tasks.update.danger')
-      render :edit # Not make GET method
+      redirect_to @task
+    else
+      flash.now[:danger] = t('flash.tasks.update.danger')
+      render :edit
     end
   end
 
   def destroy
-    @task.destroy
-    flash[:success] = t('flash.tasks.delete.success')
-    redirect_to @task # make GET method
+    if @task.destroy
+      flash[:success] = t('flash.tasks.delete.success')
+    else
+      flash.now[:danger] = t('flash.tasks.delete.danger')
+    end
+    redirect_to tasks_url
   end
 
   private # only for this class
