@@ -69,7 +69,17 @@ RSpec.describe 'TasksControllers', type: :system do
         fill_in 'Description', with: 'edited_description1'
         click_on '提出'
         expect(page).to have_content('edited_task1')
+        expect(page).to have_content('タスクが更新されました')
         expect(current_path).to eq task_path(task1)
+      end
+    end
+
+    context 'when user make no name task' do
+      it 'show error' do
+        fill_in 'Name', with: ''
+        fill_in 'Description', with: 'edited_description1'
+        click_on '提出'
+        expect(page).to have_content('タスクの更新に失敗しました')
       end
     end
   end
