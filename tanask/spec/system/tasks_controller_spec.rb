@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'TasksControllers', type: :system do
-  # let!(:task1) { create(:task_template, name: 'test_name1', description: 'test_description1') }
-  # let!(:task2) { create(:task_template, name: 'test_name2', description: 'test_description2') }
-
   describe 'index' do
 
     it 'show Task List' do
@@ -64,7 +61,9 @@ RSpec.describe 'TasksControllers', type: :system do
       it 'can see detail page' do
         expect(page).to have_content('タスク編集')
       end
+    end
 
+    context 'when user has task' do
       it 'cat edit task' do
         fill_in 'Name', with: 'edited_task1'
         fill_in 'Description', with: 'edited_description1'

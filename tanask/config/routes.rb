@@ -3,10 +3,7 @@ Rails.application.routes.draw do
   root to: 'tasks#index'
 
   resources :tasks
-<<<<<<< HEAD
 
   # for error (unexist URL)
   get '*anything' => 'errors#routing_error'
-=======
->>>>>>> rocky
 end
