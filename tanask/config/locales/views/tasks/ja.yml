@@ -12,6 +12,9 @@ ja:
       title: 'タスク詳細'
       taskname: 'タスク名'
       description: 'タスク概要'
+      go_back_to_list: 'タスク一覧に戻る'
+      go_to_edit: 'このタスクを編集する'
+      delete: 'このタスクを削除する'
     edit:
       title: 'タスク編集'
     submit:

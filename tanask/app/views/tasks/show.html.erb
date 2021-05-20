@@ -20,13 +20,13 @@
     <h3><%= t '.description' %> : </h3>
       <p><%= @task.description %></p>
 
-    <p><%= link_to 'Go to Edit page', edit_task_path(@task) %></p>
+    <p><%= link_to t('.go_to_edit'), edit_task_path(@task) %></p>
 
-    <p><%= link_to 'Delete this task', @task, method: :delete, data:{
+    <p><%= link_to t('.delete'), @task, method: :delete, data:{
       confirm: 'Are you sure to delete this task?'
     }  %></p>
 
-    <p><%= link_to 'Go back to Task List', tasks_path %></p>
+    <p><%= link_to t('.go_back_to_list'), tasks_path %></p>
 
   </body>
 </html>

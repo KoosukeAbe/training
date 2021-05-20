@@ -12,6 +12,11 @@ en:
       go_back_to_list: 'Go back to Task List'
     show:
       title: 'The Detail of Task'
+      taskname: 'Task Name'
+      description: 'Task Description'
+      go_back_to_list: 'Go Back to Task List'
+      go_to_edit: 'Go to Edit Page'
+      delete: 'Delete this task'
     edit:
       title: 'Edit Task'
     submit:
