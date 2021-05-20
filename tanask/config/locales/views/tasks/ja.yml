@@ -4,6 +4,7 @@ ja:
       title: 'タスク一覧'
       created_at: '作成日時'
       name: 'タスク名'
+      make_new_task: '新規タスク作成'
     new:
       title: 'タスク登録'
     show:

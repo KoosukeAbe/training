@@ -5,7 +5,6 @@ en:
       created_at: 'Created at '
       name: 'Task Name'
       make_new_task: 'Make new task'
-      button: 'submit'
     new:
       title: 'Add New Task'
     show:
