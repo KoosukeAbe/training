@@ -41,7 +41,7 @@ RSpec.describe 'TasksControllers', type: :system do
 
   describe 'show' do
     context 'If the user has a task' do
-      let!(:task1) { create(:task_template, name: 'test_name1', description: 'test_description1') }
+      let(:task1) { create(:task_template, name: 'test_name1', description: 'test_description1') }
       it 'show detail page' do
         visit task_path(task1)
         expect(page).to have_content('タスク詳細')
