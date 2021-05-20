@@ -16,7 +16,7 @@ RSpec.describe 'TasksControllers', type: :system do
     end
 
     context 'If the user has a task' do
-      let!(:task1) { create(:task_template, name: 'test_name1', description: 'test_description1') }
+      before { create(:task_template, name: 'test_name1', description: 'test_description1') }
       it 'show test_name1' do
         visit '/tasks'
         expect(page).to have_content('test_name1')
@@ -25,9 +25,11 @@ RSpec.describe 'TasksControllers', type: :system do
   end
 
   context 'If the user has three tasks' do
-    let!(:task1) { create(:task_template, name: 'first', description: 'test_description', created_at: DateTime.new(2021, 1, 1, 0, 0, 0)) }
-    let!(:task2) { create(:task_template, name: 'second', description: 'test_description', created_at: DateTime.new(2021, 2, 1, 0, 0, 0)) }
-    let!(:task3) { create(:task_template, name: 'third', description: 'test_description', created_at: DateTime.new(2021, 3, 1, 0, 0, 0)) }
+    before do
+      create(:task_template, name: 'first', description: 'test_description', created_at: DateTime.new(2021, 1, 1, 0, 0, 0))
+      create(:task_template, name: 'second', description: 'test_description', created_at: DateTime.new(2021, 2, 1, 0, 0, 0))
+      create(:task_template, name: 'third', description: 'test_description', created_at: DateTime.new(2021, 3, 1, 0, 0, 0))
+    end
     it 'order according to created_at' do
       visit '/tasks'
       expect(all('tbody tr')[0].text).to have_content('third')
@@ -48,9 +50,7 @@ RSpec.describe 'TasksControllers', type: :system do
   end
 
   describe 'new' do
-    before do
-      visit '/tasks/new'
-    end
+    before { visit '/tasks/new' }
     it 'show new task page' do
       expect(page).to have_content('タスク登録')
     end
@@ -67,9 +67,7 @@ RSpec.describe 'TasksControllers', type: :system do
 
   describe 'edit' do
     let!(:task1) { create(:task_template, name: 'test_name1', description: 'test_description1') }
-    before do
-      visit edit_task_path(task1)
-    end
+    before { visit edit_task_path(task1) }
 
     context 'when user has task' do
       it 'can see detail page' do
