@@ -86,7 +86,6 @@ RSpec.describe 'TasksControllers', type: :system do
 
   describe 'delete' do
     context 'when user has task' do
-      let!(:task1) { create(:task_template, name: 'test_name1', description: 'test_description1') }
       let!(:task2) { create(:task_template, name: 'test_name2', description: 'test_description2') }
       it 'can delete' do
         visit task_path(task2)
