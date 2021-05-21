@@ -9,7 +9,7 @@ RSpec.describe 'ApplicationControllers', js:true, type: :system do
         # expect(response.response_code).to eq(404)
         # expect(response).to have_http_status(404)
         # p(response)
-        expect(response).to render_template(file: "#{Rails.root}/app/views/errors/404")
+        expect(response).to assert_template(file: "#{Rails.root}/app/views/errors/404")
       end
     end
   end
