@@ -8,7 +8,7 @@
   </div>
 <% end %>
 
-<%= form_for(@task) do |f| %>
+<%= form_with(model: @task, local: true) do |f| %>
   <p><%= f.label :name, t('tasks.submit.taskname') %>
     <%= f.text_field :name %></p>
 

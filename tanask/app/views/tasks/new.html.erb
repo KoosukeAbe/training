@@ -15,9 +15,7 @@
 
 <h1><%= t '.title' %></h1>
 
-<%= form_with(model: @task, local: true) do |form| %>
-  <%= render partial: "tasks/form", locals: { task: @task } %>
-<% end %>
+<%= render partial: "tasks/form", locals: { task: @task } %>
 
 <%= link_to t('.go_back_to_list'), tasks_path %>
 
