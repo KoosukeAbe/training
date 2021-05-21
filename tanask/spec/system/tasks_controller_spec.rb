@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'TasksControllers', type: :system do
+RSpec.describe 'TasksController', type: :system do
   describe 'index' do
     it 'show Task List' do
       visit '/tasks'
