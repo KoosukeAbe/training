@@ -9,7 +9,7 @@ module ErrorHandlers
     rescue_from ActiveRecord::RecordNotFound, with: :rescue404
   end
 
-  # private
+  private
 
   def rescue403(_)
     render 'errors/403', status: :forbidden
