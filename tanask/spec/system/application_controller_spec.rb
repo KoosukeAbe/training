@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'ApplicationController', js:true, type: :system do
+RSpec.describe 'ApplicationController', type: :system do
   describe 'error' do
     context 'If the user access unexist task URL' do
       it 'show 404 page' do
