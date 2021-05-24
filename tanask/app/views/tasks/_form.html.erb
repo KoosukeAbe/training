@@ -1,9 +1,19 @@
-<%= form_for(@task) do |f| %>
-  <p><%= f.label :name, 'Task Name' %>
-     <%= f.text_field :name %></p>
+<% if @task.errors.any? %>
+  <div class="alert">
+    <ul style="color: red">
+      <% @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
-  <p><%= f.label :description, 'Description' %>
-     <%= f.text_field :description %></p>
+<%= form_with(model: @task, local: true) do |f| %>
+  <p><%= f.label :name, t('tasks.submit.taskname') %>
+    <%= f.text_field :name %></p>
+
+  <p><%= f.label :description, t('tasks.submit.description') %>
+    <%= f.text_field :description %></p>
 
   <p><%= f.submit t 'tasks.submit.button' %></p>
 <% end %>

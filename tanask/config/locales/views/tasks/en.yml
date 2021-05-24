@@ -2,11 +2,26 @@ en:
   tasks:
     index:
       title: 'Task List'
+      created_at: 'Created at '
+      name: 'Task Name'
+      make_new_task: 'Make new task'
     new:
       title: 'Add New Task'
+      taskname: 'Task Name'
+      description: 'Description'
+      go_back_to_list: 'Go back to Task List'
     show:
       title: 'The Detail of Task'
+      taskname: 'Task Name'
+      description: 'Task Description'
+      go_back_to_list: 'Go Back to Task List'
+      go_to_edit: 'Go to Edit Page'
+      delete: 'Delete this task'
     edit:
       title: 'Edit Task'
+      go_back_to_list: 'Go Back to Task List'
     submit:
+      title: 'Make new task'
+      taskname: 'Task Name'
+      description: 'Task Description'
       button: 'submit'
