@@ -1,4 +1,14 @@
-<%= form_for(@task) do |f| %>
+<% if @task.errors.any? %>
+  <div class="alert">
+    <ul style="color: red">
+      <% @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: @task, local: true) do |f| %>
   <p><%= f.label :name, t('tasks.submit.taskname') %>
     <%= f.text_field :name %></p>
 
