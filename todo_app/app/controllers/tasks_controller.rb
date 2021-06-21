@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
   def index
     @tasks = Task.all.order(created_at: :desc)
@@ -45,7 +47,9 @@ class TasksController < ApplicationController
     redirect_to root_path
   end
 
-  private def task_params
+  private
+
+  def task_params
     params.require(:task).permit(:title, :description)
   end
 end

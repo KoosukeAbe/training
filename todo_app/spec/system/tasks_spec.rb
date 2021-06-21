@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Tasks', type: :system do
   let!(:task1) { create(:task, title: 'タイトル1') }
   let!(:task2) { create(:past_task, title: 'タイトル2') }
 
-  describe "タスク一覧" do
-    context "正常時" do
+  describe 'タスク一覧' do
+    context '正常時' do
       example 'タスク一覧が表示されている (/)' do
         visit root_path
 
@@ -29,8 +31,8 @@ RSpec.describe 'Tasks', type: :system do
     end
   end
 
-  describe "タスク詳細" do
-    context "正常時" do
+  describe 'タスク詳細' do
+    context '正常時' do
       example 'タスク詳細が表示される' do
         visit task_path(task1)
         expect(page).to have_content 'タイトル1'
@@ -39,8 +41,8 @@ RSpec.describe 'Tasks', type: :system do
     end
   end
 
-  describe "タスク編集" do
-    context "正常時" do
+  describe 'タスク編集' do
+    context '正常時' do
       example 'タスクを変更できる' do
         visit edit_task_path(task1)
         fill_in 'task_title', with: 'hoge'
@@ -80,8 +82,8 @@ RSpec.describe 'Tasks', type: :system do
     end
   end
 
-  describe "タスク削除" do
-    context "正常時" do
+  describe 'タスク削除' do
+    context '正常時' do
       example 'タスクを削除できる' do
         visit tasks_path
         all('tbody tr td')[3].click_link 'Delete'
