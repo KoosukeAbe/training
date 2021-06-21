@@ -1,5 +1,44 @@
 # training
 
+## UI設計
+
+## DB設計
+
+```
+CREATE TABLE Task
+(
+  id INT NOT NULL PRIMARY KEY,
+  title VARCHAR(100) NOT NULL,
+  description VARCHAR(255),
+  importance INT NOT NULL,
+  due_datetime DATE NOT NULL,
+  create_datetime DATETIME NOT NULL,
+  user_id INT NOT NULL,
+  status_id INT NOT NULL,
+  label_id INT NOT NULL,
+  is_deleted BOOLEAN NOT NULL,
+);
+
+CREATE TABLE user
+(
+  id INT NOT NULL PRIMARY KEY,
+  name VARCHAR(30) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+);
+
+CREATE TABLE status
+(
+  id INT NOT NULL PRIMARY KEY,
+  name VARCHAR NOT NULL UNIQUE,
+);
+
+CREATE TABLE label
+(
+  id INT NOT NULL PRIMARY_KEY,
+  name VARCHAR(30) NOT NULL UNIQUE,
+);
+```
+
 ## このカリキュラムについて
 
 この文書は、Fablicで必須とされるRuby on Railsとその周辺技術の基礎を習得するための新入社員教育用カリキュラムです。
