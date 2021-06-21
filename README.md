@@ -1,8 +1,18 @@
 # training
 
 ## UI設計
+トップ画面
+![トップ画面](https://github.com/KoosukeAbe/training/blob/KoosuleAbe_step4/taskkun/documents/Slide2.png)
+
+タスク選択後の画面
+![タスク選択画面](https://github.com/KoosukeAbe/training/blob/KoosuleAbe_step4/taskkun/documents/Slide3.png)
+
+タスク新規作成画面
+![タスク新規作成画面](https://github.com/KoosukeAbe/training/blob/KoosuleAbe_step4/taskkun/documents/Slide4.png)
 
 ## DB設計
+E-R図
+![E-R図](https://github.com/KoosukeAbe/training/blob/KoosuleAbe_step4/taskkun/documents/Slide5.png)
 
 ```
 CREATE TABLE Task
