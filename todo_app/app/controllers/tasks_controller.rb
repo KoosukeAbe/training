@@ -52,13 +52,8 @@ class TasksController < ApplicationController
   end
 
   def create_sort_query
-    sort_query = { created_at: :desc }
-    if params[:end_at] == 'asc'
-      sort_query = { end_at: :asc }
-    end
-    if params[:end_at] == 'desc'
-      sort_query = { end_at: :desc }
-    end
-    sort_query
+    return { end_at: :asc } if params[:end_at] == 'asc'
+    return { end_at: :desc } if params[:end_at] == 'desc'
+    { created_at: :desc }
   end
 end
