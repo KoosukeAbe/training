@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_22_012044) do
+ActiveRecord::Schema.define(version: 2021_06_22_062759) do
 
   create_table "labels", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", limit: 30, null: false
@@ -29,9 +29,6 @@ ActiveRecord::Schema.define(version: 2021_06_22_012044) do
     t.text "description", size: :tiny
     t.integer "importance", null: false
     t.date "due_date", null: false
-    t.integer "user_id", null: false
-    t.integer "status_id", null: false
-    t.integer "label_id", null: false
     t.boolean "is_deleted", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

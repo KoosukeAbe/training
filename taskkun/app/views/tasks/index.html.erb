@@ -1,0 +1,12 @@
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="task.scss" type="text/css">
+</head>
+<body>
+    <h1>タスクリスト</h1>
+    <% @tasks.each do |task| %>
+        <a href="./tasks/<%= task.id %>">タイトル：<%= task.title %></a>
+        <br>
+    <% end %>
+    <button onClick="location.href='./tasks/new'">おNEW</button>
+</body>
