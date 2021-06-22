@@ -1,0 +1,1 @@
+rails generate model statuses id:int name:text
