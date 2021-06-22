@@ -15,34 +15,34 @@ E-R図
 ![E-R図](https://github.com/KoosukeAbe/training/blob/KoosuleAbe_step4/taskkun/documents/Slide5.png)
 
 ```
-CREATE TABLE Task
+CREATE TABLE tasks
 (
   id INT NOT NULL PRIMARY KEY,
   title VARCHAR(100) NOT NULL,
   description VARCHAR(255),
   importance INT NOT NULL,
-  due_datetime DATE NOT NULL,
-  create_datetime DATETIME NOT NULL,
+  due_date DATE NOT NULL,
+  created_at DATETIME NOT NULL,
   user_id INT NOT NULL,
   status_id INT NOT NULL,
   label_id INT NOT NULL,
   is_deleted BOOLEAN NOT NULL,
 );
 
-CREATE TABLE user
+CREATE TABLE users
 (
   id INT NOT NULL PRIMARY KEY,
   name VARCHAR(30) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
 );
 
-CREATE TABLE status
+CREATE TABLE statuses
 (
   id INT NOT NULL PRIMARY KEY,
   name VARCHAR NOT NULL UNIQUE,
 );
 
-CREATE TABLE label
+CREATE TABLE labels
 (
   id INT NOT NULL PRIMARY_KEY,
   name VARCHAR(30) NOT NULL UNIQUE,
