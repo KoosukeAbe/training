@@ -1,5 +1,54 @@
 # training
 
+## UI設計
+トップ画面
+![トップ画面](https://github.com/KoosukeAbe/training/blob/KoosuleAbe_step4/taskkun/documents/Slide2.png)
+
+タスク選択後の画面
+![タスク選択画面](https://github.com/KoosukeAbe/training/blob/KoosuleAbe_step4/taskkun/documents/Slide3.png)
+
+タスク新規作成画面
+![タスク新規作成画面](https://github.com/KoosukeAbe/training/blob/KoosuleAbe_step4/taskkun/documents/Slide4.png)
+
+## DB設計
+E-R図
+![E-R図](https://github.com/KoosukeAbe/training/blob/KoosuleAbe_step4/taskkun/documents/Slide5.png)
+
+```
+CREATE TABLE tasks
+(
+  id INT NOT NULL PRIMARY KEY,
+  title VARCHAR(100) NOT NULL,
+  description VARCHAR(255),
+  importance INT NOT NULL,
+  due_date DATE NOT NULL,
+  created_at DATETIME NOT NULL,
+  user_id INT NOT NULL,
+  status_id INT NOT NULL,
+  label_id INT NOT NULL,
+  is_deleted BOOLEAN NOT NULL,
+);
+
+CREATE TABLE users
+(
+  id INT NOT NULL PRIMARY KEY,
+  name VARCHAR(30) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+);
+
+CREATE TABLE statuses
+(
+  id INT NOT NULL PRIMARY KEY,
+  name VARCHAR NOT NULL UNIQUE,
+);
+
+CREATE TABLE labels
+(
+  id INT NOT NULL PRIMARY_KEY,
+  name VARCHAR(30) NOT NULL UNIQUE,
+);
+```
+
 ## このカリキュラムについて
 
 この文書は、Fablicで必須とされるRuby on Railsとその周辺技術の基礎を習得するための新入社員教育用カリキュラムです。
