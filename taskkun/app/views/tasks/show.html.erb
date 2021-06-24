@@ -3,19 +3,20 @@
 <link rel="stylesheet" href="task.scss" type="text/scss">
 </head>
 <body>
-    <h1>タスク詳細</h1>
-    <h1>タイトル：<%= @task.title %></h1>
+    <h1><%= t '.title' %></h1>
+    <h1><%= t '.task_title' %><%= @task.title %></h1>
 
     <% if @task.description.blank? then %> 
-    <h2>説明文なし</h2>
+    <h2><%= t '.task_not_describe' %></h2>
     <% else %>
-    <h2>説明文：<%= @task.description %></h2>
+    <h2><%= t '.task_describe' %><%= @task.description %></h2>
     <% end %>
 
-    <h3>優先度：<%= @task.importance %></h3>
+    <h3><%= t '.task_importance' %><%= @task.importance %></h3>
 
-    <h3>期日：<%= @task.due_date %></h3>
+    <h3><%= t '.task_due_date' %><%= @task.due_date %></h3>
 
-    <button onclick="location.href='./<%= @task.id %>/edit'">change</button>
-    <%= button_to 'delete', "./#{@task.id}", method: :delete %>
+    <button onclick="location.href='./<%= @task.id %>/edit'"><%= t '.change_button' %></button>
+    <br /><br />
+    <%= button_to (t '.delete_button'), "./#{@task.id}", method: :delete %>
 </body>

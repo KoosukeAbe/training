@@ -3,10 +3,11 @@
     <link rel="stylesheet" href="task.scss" type="text/scss">
 </head>
 <body>
-    <h1>タスクリスト</h1>
+    <h1><%= t '.title' %></h1>
+    
     <% @tasks.each do |task| %>
-        <a href="./tasks/<%= task.id %>">タイトル：<%= task.title %></a>
+        <a href="./tasks/<%= task.id %>"><%= t '.task_title'%>：<%= task.title %></a>
         <br>
     <% end %>
-    <button onClick="location.href='./tasks/new'">おNEW</button>
+    <button onClick="location.href='./tasks/new'"><%= t '.create_button' %></button>
 </body>
