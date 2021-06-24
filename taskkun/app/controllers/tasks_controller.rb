@@ -35,6 +35,9 @@ class TasksController < ApplicationController
     end
 
     def destroy
+        data_attributes = @task.attributes
+        DeletedTask.create({title: @task.title, description: @task.description, importance: @task.importance, due_date:@task.due_date})
+        
         @task.destroy
         # model名を指定すると、そのmodelと対応するコントローラーのindexアクションのページに遷移する
         redirect_to @task

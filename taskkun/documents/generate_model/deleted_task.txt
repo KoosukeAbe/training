@@ -1,0 +1,1 @@
+rails generate model deleted_tasks id:int title:string description:text importance:int due_date:date
