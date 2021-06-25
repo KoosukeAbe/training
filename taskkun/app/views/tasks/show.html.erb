@@ -1,22 +1,21 @@
 <head>
-<meta charset="utf-8">
-<link rel="stylesheet" href="task.scss" type="text/scss">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="task.scss" type="text/scss">
 </head>
 <body>
-    <h1><%= t '.title' %></h1>
-    <h1><%= t '.task_title' %><%= @task.title %></h1>
+  <h1><%= t '.title' %></h1>
+  <h1><%= t '.task_title' %><%= @task.title %></h1>
 
-    <% if @task.description.blank? then %> 
+  <% if @task.description.blank? then %> 
     <h2><%= t '.task_not_describe' %></h2>
-    <% else %>
+  <% else %>
     <h2><%= t '.task_describe' %><%= @task.description %></h2>
-    <% end %>
+  <% end %>
 
-    <h3><%= t '.task_importance' %><%= @task.importance %></h3>
+  <h3><%= t '.task_importance' %><%= @task.importance %></h3>
+  <h3><%= t '.task_due_date' %><%= @task.due_date %></h3>
 
-    <h3><%= t '.task_due_date' %><%= @task.due_date %></h3>
-
-    <button onclick="location.href='./<%= @task.id %>/edit'"><%= t '.change_button' %></button>
-    <br /><br />
-    <%= button_to (t '.delete_button'), "./#{@task.id}", method: :delete %>
+  <%= button_to (t '.change_button'), edit_task_path(@task.id), method: :get %>
+  <br /><br />
+  <%= button_to (t '.delete_button'), task_path(@task.id), method: :delete %>
 </body>

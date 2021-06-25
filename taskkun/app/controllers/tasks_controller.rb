@@ -1,53 +1,53 @@
 class TasksController < ApplicationController
-    before_action :set_task, only: [:show, :edit, :update, :destroy]
-    protect_from_forgery except: :destroy
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery except: :destroy
 
-    def index
-        @tasks = Task.all
-    end
+  def index
+    @tasks = Task.all
+  end
 
-    def show
-    end
+  def show
+  end
 
-    def new
-        @task = Task.new
-    end
+  def new
+    @task = Task.new
+  end
 
-    def create
-        @task = Task.new(task_params)
+  def create
+    @task = Task.new(task_params)
 
-        if @task.save
-            redirect_to @task
-        else
-            render :new
-        end
+    if @task.save
+      redirect_to task_path(@task)
+    else
+      render :new
     end
-    
-    def edit
-    end
+  end
 
-    def update
-        if @task.update(task_params)
-            redirect_to @task 
-        else   
-            render :edit
-        end  
-    end
+  def edit
+  end
 
-    def destroy
-        data_attributes = @task.attributes
-        DeletedTask.create({title: @task.title, description: @task.description, importance: @task.importance, due_date:@task.due_date})
-        
-        @task.destroy
-        # model名を指定すると、そのmodelと対応するコントローラーのindexアクションのページに遷移する
-        redirect_to @task
+  def update
+    if @task.update(task_params)
+      redirect_to task_path(@task)
+    else
+      render :edit
     end
+  end
 
-    def task_params
-        params.require(:task).permit(:title, :description, :importance, :due_date)
-    end
+  def destroy
+    data_attributes = @task.attributes
+    DeletedTask.create({ title: @task.title, description: @task.description, importance: @task.importance, due_date: @task.due_date })
 
-    def set_task
-        @task = Task.find(params[:id])
-    end
+    @task.destroy
+    # model名を指定すると、そのmodelと対応するコントローラーのindexアクションのページに遷移する
+    redirect_to root_path
+  end
+
+  def task_params
+    params.require(:task).permit(:title, :description, :importance, :due_date)
+  end
+
+  def set_task
+    @task = Task.find(params[:id])
+  end
 end

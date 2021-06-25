@@ -1,11 +1,11 @@
 <%= form_with(model:@task, local: true) do |t|  %>
-    <%= t '.title' %> <%= t.text_field :title %>
-    <br>
-    <%= t '.description' %><%= t.text_field :description %>
-    <br>
-    1<%= t.range_field(:importance, in:1..10) %>10
-    <br>
-    <%= t '.due_date' %><%= t.date_field :due_date %>
-    <br>
-    <%= t.submit %>
+  <%= t '.title' %> <%= t.text_field :title %>
+  <br>
+  <%= t '.description' %><%= t.text_field :description %>
+  <br>
+  1<%= t.range_field(:importance, in:1..10) %>10
+  <br>
+  <%= t '.due_date' %><%= t.date_field :due_date %>
+  <br>
+  <%= t.submit %>
 <% end %>

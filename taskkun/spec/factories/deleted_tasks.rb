@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :deleted_task do
-    id { "" }
     title { "MyString" }
     description { "MyText" }
     importance { "" }
