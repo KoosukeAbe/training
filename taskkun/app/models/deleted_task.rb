@@ -1,0 +1,2 @@
+class DeletedTask < ApplicationRecord
+end

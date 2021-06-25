@@ -1,0 +1,22 @@
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="task.scss" type="text/scss">
+</head>
+<body>
+  <h1>タスク詳細</h1>
+  <h1>タイトル：<%= @task.title %></h1>
+
+  <% if @task.description.blank? then %> 
+    <h2>説明文なし</h2>
+  <% else %>
+    <h2>説明文：<%= @task.description %></h2>
+  <% end %>
+
+  <h3>優先度：<%= @task.importance %></h3>
+
+  <h3>期日：<%= @task.due_date %></h3>
+
+  <%= button_to 'change', edit_task_path(@task.id), method: :get %>
+
+  <%= button_to 'delete', task_path(@task.id), method: :delete %>
+</body>
