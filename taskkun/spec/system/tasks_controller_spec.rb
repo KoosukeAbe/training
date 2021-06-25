@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe TasksController, type: :system do
-  let!(:task1) { create(:task)}
-  let!(:task2) { create(:task)}
-  let!(:task3) { create(:task)}
+  let!(:task1) { create(:task, created_at: DateTime.new(2021, 1, 1, 0, 0, 0).in_time_zone)}
+  let!(:task2) { create(:task, created_at: DateTime.new(2021, 2, 1, 0, 0, 0).in_time_zone)}
+  let!(:task3) { create(:task, created_at: DateTime.new(2021, 3, 1, 0, 0, 0).in_time_zone)}
 
   describe 'Task CRUD' do
     describe 'index' do
@@ -21,7 +21,7 @@ RSpec.describe TasksController, type: :system do
       context 'go to the create page' do
         it 'click create button' do
           click_on 'おNEW'
-          expect(page).to have_content 'タスク作成'
+          expect(page).to have_content '新規タスク'
         end
       end
 
@@ -29,6 +29,15 @@ RSpec.describe TasksController, type: :system do
         it 'click each tasks' do
           click_on 'Task Version7'
           expect(page).to have_content 'タスク詳細'
+        end
+      end
+
+      context 'sort based on created_at' do
+        it 'click created_sort link' do
+          click_on '作成日順'
+          expect(all('div a')[0].text).to have_content('Task Version12')
+          expect(all('div a')[1].text).to have_content('Task Version11')
+          expect(all('div a')[2].text).to have_content('Task Version10')
         end
       end
     end
@@ -40,12 +49,12 @@ RSpec.describe TasksController, type: :system do
 
       it 'display task detail' do
         expect(page).to have_content 'タスク詳細'
-        expect(page).to have_content 'Task Version10'
+        expect(page).to have_content 'Task Version13'
       end
             
       context 'go to the edit page' do
         it 'click edit button' do
-          click_on 'change'
+          click_on 'おチェンジ'
           expect(page).to have_content 'タスク編集'
         end
       end
@@ -57,11 +66,11 @@ RSpec.describe TasksController, type: :system do
       end
 
       it 'display create form' do
-        expect(page).to have_content 'タスク作成'
+        expect(page).to have_content '新規タスク'
       end
 
       context 'create task' do
-        let(:submit) { "Create Task" }
+        let(:submit) { "登録する" }
 
         it 'click create button' do
           fill_in 'task_title', with: 'teeeest'
@@ -83,7 +92,7 @@ RSpec.describe TasksController, type: :system do
       end
 
       context 'update task' do
-        let(:submit) { "Update Task" }
+        let(:submit) { "更新する" }
         it 'click update button' do
           fill_in 'task_title', with: 'Task Version2020'
           fill_in 'task_description', with: 'super ultra Test2020'
@@ -97,7 +106,7 @@ RSpec.describe TasksController, type: :system do
       context 'delete task' do
         it 'click delete button' do
           visit task_path(task1)
-          click_on 'delete'
+          click_on 'おデリート'
           expect {
             expect(page).to_not have_content('test_task28')
           }
