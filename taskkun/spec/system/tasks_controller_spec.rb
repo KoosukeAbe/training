@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe TasksController, type: :system do
-  let!(:task1) { create(:task, created_at: DateTime.new(2021, 1, 1, 0, 0, 0).in_time_zone)}
-  let!(:task2) { create(:task, created_at: DateTime.new(2021, 2, 1, 0, 0, 0).in_time_zone)}
-  let!(:task3) { create(:task, created_at: DateTime.new(2021, 3, 1, 0, 0, 0).in_time_zone)}
+  let!(:task1) { create(:task, created_at: DateTime.new(2021, 1, 1, 0, 0, 0).in_time_zone, due_date: '2021-06-01')}
+  let!(:task2) { create(:task, created_at: DateTime.new(2021, 2, 1, 0, 0, 0).in_time_zone, due_date: '2021-07-01')}
+  let!(:task3) { create(:task, created_at: DateTime.new(2021, 3, 1, 0, 0, 0).in_time_zone, due_date: '2021-08-01')}
 
   describe 'Task CRUD' do
     describe 'index' do
@@ -40,6 +40,15 @@ RSpec.describe TasksController, type: :system do
           expect(all('div a')[2].text).to have_content('Task Version10')
         end
       end
+
+      context 'sort based on created_at' do
+        it 'click created_sort link' do
+          click_on '期日順'
+          expect(all('div a')[0].text).to have_content('Task Version15')
+          expect(all('div a')[1].text).to have_content('Task Version14')
+          expect(all('div a')[2].text).to have_content('Task Version13')
+        end
+      end
     end
 
     describe 'show' do
@@ -49,7 +58,7 @@ RSpec.describe TasksController, type: :system do
 
       it 'display task detail' do
         expect(page).to have_content 'タスク詳細'
-        expect(page).to have_content 'Task Version13'
+        expect(page).to have_content 'Task Version16'
       end
             
       context 'go to the edit page' do
@@ -72,12 +81,41 @@ RSpec.describe TasksController, type: :system do
       context 'create task' do
         let(:submit) { "登録する" }
 
-        it 'click create button' do
+        it 'correct process' do
           fill_in 'task_title', with: 'teeeest'
           fill_in 'task_description', with: 'super ultra test'
           fill_in 'task_due_date', with: "002020/12/12"
           click_on submit
           expect(page).to have_content('teeeest')
+        end
+
+        it 'when task title is no name' do
+          fill_in 'task_title', with: ''
+          fill_in 'task_description', with: 'super ultra test'
+          fill_in 'task_due_date', with: "002020/12/12"
+          click_on submit
+
+          expect(page).to have_content('エラｱｱｱｱｱｱｱｱｱ')
+          expect(page).to have_content('Titleは1文字以上で入力してください')
+        end
+
+        it 'when task description length is over limit' do
+          fill_in 'task_title', with: 'test'
+          fill_in 'task_description', with: 'ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ'
+          fill_in 'task_due_date', with: "002020/12/12"
+          click_on submit
+
+          expect(page).to have_content('エラｱｱｱｱｱｱｱｱｱ')
+          expect(page).to have_content('Descriptionは255文字以内で入力してください')
+        end
+
+        it 'when task due date is not inputted' do
+          fill_in 'task_title', with: 'test'
+          fill_in 'task_description', with: 'testest'
+          click_on submit
+
+          expect(page).to have_content('エラｱｱｱｱｱｱｱｱｱ')
+          expect(page).to have_content('Due dateは不正な値です')
         end
       end
     end

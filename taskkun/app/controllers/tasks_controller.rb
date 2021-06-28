@@ -5,6 +5,8 @@ class TasksController < ApplicationController
   def index
     if params[:sort_created]
       @tasks = Task.created_latest
+    elsif params[:sort_due_date]
+      @tasks = Task.due_date_latest
     else
       @tasks = Task.id_oldest
     end
