@@ -1,0 +1,32 @@
+inherit_gem:
+  fablicop:
+    - "config/.base_rubocop.yml"
+    # uncomment if use rails cops
+    # - "config/rails.yml"
+    # uncomment if use rspec cops
+    # - "config/rspec.yml"
+
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'vendor/**/*'
+    - 'spec/support/*'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+    - 'config/spring.rb'
+    - 'config/puma.rb'
+    - 'config/environments/*'
+    - 'config/initializers/*'
+    - 'config/boot.rb'
+    - 'config/environment.rb'
+    - 'config/application.rb'
+    - 'bin/yarn'
+    - 'config.ru'
+    - 'bin/*'
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'app/channels/application_cable/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+

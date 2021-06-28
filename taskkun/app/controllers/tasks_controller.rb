@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: %i[show edit update destroy]
   protect_from_forgery except: :destroy
 
   def index
@@ -35,7 +35,6 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    data_attributes = @task.attributes
     DeletedTask.create({ title: @task.title, description: @task.description, importance: @task.importance, due_date: @task.due_date })
 
     @task.destroy

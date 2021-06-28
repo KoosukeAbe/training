@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    class Forbidden < ActionController::ActionControllerError; end
+  class Forbidden < ActionController::ActionControllerError; end
 
-    include ErrorHandlers
+  include ErrorHandlers
 end
