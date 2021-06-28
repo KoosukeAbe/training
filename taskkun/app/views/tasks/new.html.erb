@@ -3,6 +3,6 @@
   <link rel="stylesheet" href="task.scss" type="text/scss">
 </head>
 <body>
-  <h1>タスク作成</h1>
+  <h1><%= t '.title' %></h1>
   <%= render partial: "layouts/task_form", locals: {task: @task} %>
 </body>

@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe TasksController, type: :system do
-  let!(:task1) { create(:task)}
-  let!(:task2) { create(:task)}
-  let!(:task3) { create(:task)}
+  let!(:task1) { create(:task) }
+  let!(:task2) { create(:task) }
+  let!(:task3) { create(:task) }
 
   describe 'Task CRUD' do
     describe 'index' do
       before do
         visit root_path
       end
-            
+
       it 'display task list' do
         expect(page).to have_content 'タスクリスト'
         expect(page).to have_content 'Task Version1'
@@ -42,7 +42,7 @@ RSpec.describe TasksController, type: :system do
         expect(page).to have_content 'タスク詳細'
         expect(page).to have_content 'Task Version10'
       end
-            
+
       context 'go to the edit page' do
         it 'click edit button' do
           click_on 'change'
@@ -61,12 +61,12 @@ RSpec.describe TasksController, type: :system do
       end
 
       context 'create task' do
-        let(:submit) { "Create Task" }
+        let(:submit) { 'Create Task' }
 
         it 'click create button' do
           fill_in 'task_title', with: 'teeeest'
           fill_in 'task_description', with: 'super ultra test'
-          fill_in 'task_due_date', with: "002020/12/12"
+          fill_in 'task_due_date', with: '002020/12/12'
           click_on submit
           expect(page).to have_content('teeeest')
         end
@@ -83,7 +83,7 @@ RSpec.describe TasksController, type: :system do
       end
 
       context 'update task' do
-        let(:submit) { "Update Task" }
+        let(:submit) { 'Update Task' }
         it 'click update button' do
           fill_in 'task_title', with: 'Task Version2020'
           fill_in 'task_description', with: 'super ultra Test2020'

@@ -1,0 +1,20 @@
+ja:
+  tasks:
+    index:
+      title: 'タスクリスト'
+      task_title: 'タスク名：'
+      create_button: 'おNEW'
+    show:
+      title: 'タスク詳細'
+      task_title: 'タイトル：'
+      task_not_describe: '説明文なし'
+      task_describe: '説明文：'
+      task_importance: '優先度：'
+      task_due_date: '期日：'
+      change_button: 'おチェンジ'
+      delete_button: 'おデリート'
+    edit:
+      title: 'タスク編集'
+    new:
+      title: '新規タスク'
+    

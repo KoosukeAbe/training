@@ -1,0 +1,6 @@
+ja:
+  layouts:
+    task_form:
+      title: 'タスク名：'
+      description: '説明文：'
+      due_date: '期日：'
