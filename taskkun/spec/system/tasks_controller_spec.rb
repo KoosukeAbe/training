@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe TasksController, type: :system do
-  let!(:task1) { create(:task, created_at: DateTime.new(2021, 1, 1, 0, 0, 0).in_time_zone, due_date: '2021-06-01')}
-  let!(:task2) { create(:task, created_at: DateTime.new(2021, 2, 1, 0, 0, 0).in_time_zone, due_date: '2021-07-01')}
-  let!(:task3) { create(:task, created_at: DateTime.new(2021, 3, 1, 0, 0, 0).in_time_zone, due_date: '2021-08-01')}
+  let!(:task1) { create(:task, created_at: DateTime.new(2021, 1, 1, 0, 0, 0).in_time_zone, due_date: '2021-06-01') }
+  let!(:task2) { create(:task, created_at: DateTime.new(2021, 2, 1, 0, 0, 0).in_time_zone, due_date: '2021-07-01') }
+  let!(:task3) { create(:task, created_at: DateTime.new(2021, 3, 1, 0, 0, 0).in_time_zone, due_date: '2021-08-01') }
 
   describe 'Task CRUD' do
     describe 'index' do
       before do
         visit root_path
       end
-            
+
       it 'display task list' do
         expect(page).to have_content 'タスクリスト'
         expect(page).to have_content 'Task Version1'
@@ -60,7 +60,7 @@ RSpec.describe TasksController, type: :system do
         expect(page).to have_content 'タスク詳細'
         expect(page).to have_content 'Task Version16'
       end
-            
+
       context 'go to the edit page' do
         it 'click edit button' do
           click_on 'おチェンジ'
@@ -84,7 +84,7 @@ RSpec.describe TasksController, type: :system do
         it 'correct process' do
           fill_in 'task_title', with: 'teeeest'
           fill_in 'task_description', with: 'super ultra test'
-          fill_in 'task_due_date', with: "002020/12/12"
+          fill_in 'task_due_date', with: '002020/12/12'
           click_on submit
           expect(page).to have_content('teeeest')
         end
@@ -130,7 +130,7 @@ RSpec.describe TasksController, type: :system do
       end
 
       context 'update task' do
-        let(:submit) { "更新する" }
+        let(:submit) { 'Update Task' }
         it 'click update button' do
           fill_in 'task_title', with: 'Task Version2020'
           fill_in 'task_description', with: 'super ultra Test2020'
