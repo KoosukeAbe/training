@@ -32,5 +32,14 @@ module Taskkun
      # デフォルトの言語設定
      # config.i18n.default_locale = :en
      config.i18n.default_locale = :ja
+
+     config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins "localhost:3001"
+        resource "*",
+          headers: :any,
+          methods: [:get, :post, :options, :head]
+      end
+    end
   end
 end
