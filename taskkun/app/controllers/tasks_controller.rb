@@ -1,18 +1,18 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   protect_from_forgery except: :destroy
+  PER = 5
 
   def index
     if params[:sort_created]
-      @tasks = Task.created_latest
+      @tasks = Task.created_latest.page(params[:page]).per(PER)
     elsif params[:sort_due_date]
-      @tasks = Task.due_date_latest
+      @tasks = Task.due_date_latest.page(params[:page]).per(PER)
     elsif params[:search]
-      @tasks = Task.where(title: params[:title]).or(Task.where(status_id: params[:status]))
+      @tasks = Task.where(title: params[:title]).or(Task.where(status_id: params[:status])).page(params[:page]).per(PER)
       @keyword = params[:title]
-      
     else
-      @tasks = Task.id_oldest
+      @tasks = Task.id_oldest.page(params[:page]).per(PER)
     end
 
   end

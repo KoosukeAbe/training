@@ -16,6 +16,7 @@
       <%= link_to "#{t '.task_title'}#{task.title}", task_path(task) %>
       <br>
     <% end %>
+    <%= paginate @tasks %>
   </div>
   <% else %>
     <h1><%= t '.task_notting' %></h1>
