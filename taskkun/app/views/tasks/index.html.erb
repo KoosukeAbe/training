@@ -10,11 +10,19 @@
   <br>
   <%= link_to (t '.sorted_id'), root_path %>
   <br> <br>
+  <% if @tasks.size != 0 %> 
   <div>
     <% @tasks.each do |task| %>
       <%= link_to "#{t '.task_title'}#{task.title}", task_path(task) %>
       <br>
     <% end %>
   </div>
+  <% else %>
+    <h1><%= t '.task_notting' %></h1>
+  <% end %>
+
   <%= button_to (t '.create_button'), new_task_path, method: :get %>
+  <br> <br>
+  <%= render partial: "layouts/search_form" %>
+
 </body>

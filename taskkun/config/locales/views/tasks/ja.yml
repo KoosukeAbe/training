@@ -7,6 +7,7 @@ ja:
       sorted_created_at: '作成日順'
       sorted_id: 'ID順'
       sorted_due_date: '期日順'
+      task_notting: 'タスクナッシング'
     show:
       title: 'タスク詳細'
       task_title: 'タイトル：'
@@ -20,4 +21,8 @@ ja:
       title: 'タスク編集'
     new:
       title: '新規タスク'
+    status_list:
+      waiting: '未着手'
+      working: '着手中'
+      complete: '完了'
     

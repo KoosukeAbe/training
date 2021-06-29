@@ -6,4 +6,6 @@ class Task < ApplicationRecord
   validates :title, {length: {in: 1..100} }
   validates :description, {length: {maximum: 255} }
   validates :due_date, {format: {with: /\A\d{1,4}\-\d{1,2}\-\d{1,2}\Z/ } }
+
+  enum status: { waiting: 1, working: 2, complete: 3 }
 end

@@ -18,5 +18,8 @@
   <br>
   <%= t '.due_date' %><%= t.date_field :due_date %>
   <br>
+  <%= t '.status_title' %>
+  <%= t.select :status_id, Task.statuses.map {|k, v| [t("tasks.status_list.#{k}"), v]} %>
+  <br>
   <%= t.submit %>
 <% end %>

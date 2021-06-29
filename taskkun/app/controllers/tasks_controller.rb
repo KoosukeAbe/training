@@ -7,9 +7,14 @@ class TasksController < ApplicationController
       @tasks = Task.created_latest
     elsif params[:sort_due_date]
       @tasks = Task.due_date_latest
+    elsif params[:search]
+      @tasks = Task.where(title: params[:title]).or(Task.where(status_id: params[:status]))
+      @keyword = params[:title]
+      
     else
       @tasks = Task.id_oldest
     end
+
   end
 
   def show
@@ -42,7 +47,7 @@ class TasksController < ApplicationController
 
   def destroy
     data_attributes = @task.attributes
-    DeletedTask.create({ title: @task.title, description: @task.description, importance: @task.importance, due_date: @task.due_date })
+    DeletedTask.create({ title: @task.title, description: @task.description, importance: @task.importance, due_date: @task.due_date, status_id: @task.due_date })
 
     @task.destroy
     # model名を指定すると、そのmodelと対応するコントローラーのindexアクションのページに遷移する
@@ -50,7 +55,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :importance, :due_date)
+    params.require(:task).permit(:title, :description, :importance, :due_date, :status_id)
   end
 
   def set_task

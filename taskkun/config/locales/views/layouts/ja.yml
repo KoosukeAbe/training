@@ -5,3 +5,9 @@ ja:
       description: '説明文：'
       due_date: '期日：'
       error: 'エラｱｱｱｱｱｱｱｱｱ'
+      status_title: '状態'
+    search_form:
+      title: '検索ぅ'
+      search_button: '検索開始'
+      keyword_title: 'タイトル'
+      status_title: 'ステータス'
