@@ -5,6 +5,6 @@ class DueDateValidator < ActiveModel::EachValidator
     rescue StandardError
       false
     end
-    record.errors.add(attribute, options[:message] || 'の日付が不正です') if is_date
+    record.errors.add(attribute, options[:message] || 'の日付が不正です') if (is_date || value.blank?)
   end
 end

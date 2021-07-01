@@ -159,7 +159,7 @@ RSpec.describe TasksController, type: :system do
           click_on submit
 
           expect(page).to have_content('エラｱｱｱｱｱｱｱｱｱ')
-          expect(page).to have_content('Due dateは不正な値です')
+          expect(page).to have_content('Due dateの日付が不正です')
         end
       end
     end
