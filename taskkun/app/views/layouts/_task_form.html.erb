@@ -1,11 +1,32 @@
 <%= form_with(model:@task, local: true) do |t|  %>
-  <%= t '.title' %> <%= t.text_field :title %>
-  <br>
-  <%= t '.description' %><%= t.text_field :description %>
-  <br>
-  1<%= t.range_field(:importance, in:1..10) %>10
-  <br>
-  <%= t '.due_date' %><%= t.date_field :due_date %>
-  <br>
-  <%= t.submit %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @task.errors.count %> <%= t '.error' %></h2>
+      <ul>
+      <% @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div id="input_form">
+    <div class="content">
+      <%= t '.title' %> <%= t.text_field :title %>
+    </div>
+
+    <div class="content">
+      <%= t '.description' %><%= t.text_field :description %>
+    </div>
+
+    <div id="range">
+      1<%= t.range_field(:importance, in:1..10) %>10
+    <div>
+
+    <div class="content">
+      <%= t '.due_date' %><%= t.date_field :due_date %>
+    </div>
+    
+    <%= t.submit %>
+  </div>
 <% end %>

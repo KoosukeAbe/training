@@ -4,6 +4,9 @@ ja:
       title: 'タスクリスト'
       task_title: 'タスク名：'
       create_button: 'おNEW'
+      sorted_created_at: '作成日順'
+      sorted_id: 'ID順'
+      sorted_due_date: '期日順'
     show:
       title: 'タスク詳細'
       task_title: 'タイトル：'

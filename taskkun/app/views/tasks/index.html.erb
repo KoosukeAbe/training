@@ -4,10 +4,17 @@
 </head>
 <body>
   <h1><%= t '.title' %></h1>
-    
-  <% @tasks.each do |task| %>
-    <%= link_to "#{t '.task_title'}#{task.title}", task_path(task) %>
-    <br>
-  <% end %>
-  <%= button_to (t '.create_button'), new_task_path, method: :get %>
+  <div id="sort_list">
+    <%= link_to (t '.sorted_created_at'), root_path(sort_created: "true") %>
+    <%= link_to (t '.sorted_due_date'), root_path(sort_due_date: "true") %>
+    <%= link_to (t '.sorted_id'), root_path %>
+  </div>
+
+  <div id="index">
+    <% @tasks.each do |task| %>
+      <%= link_to "#{t '.task_title'}#{task.title}", task_path(task) %>
+    <% end %>
+
+    <%= button_to (t '.create_button'), new_task_path, method: :get %>
+  </div>
 </body>
