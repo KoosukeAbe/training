@@ -16,6 +16,5 @@
   <h3><%= t '.task_due_date' %><%= @task.due_date %></h3>
 
   <%= button_to (t '.change_button'), edit_task_path(@task.id), method: :get %>
-  <br /><br />
   <%= button_to (t '.delete_button'), task_path(@task.id), method: :delete %>
 </body>
