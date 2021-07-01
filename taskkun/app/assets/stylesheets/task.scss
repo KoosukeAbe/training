@@ -3,9 +3,36 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 body {
-    padding: 20px;
+  padding: 20px;
 }
 
 span {
-    margin-right: 25px;
+  margin-right: 25px;
+}
+
+#sort_list {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+#input_form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+#range {
+  display: inline;
+}
+
+.content {
+  display: inline;
+}
+
+#index {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin-top: 30px;
 }

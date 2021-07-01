@@ -3,13 +3,13 @@ class TasksController < ApplicationController
   protect_from_forgery except: :destroy
 
   def index
-    if params[:sort_created]
-      @tasks = Task.created_latest
-    elsif params[:sort_due_date]
-      @tasks = Task.due_date_latest
-    else
-      @tasks = Task.id_oldest
-    end
+    @tasks = if params[:sort_created]
+               Task.created_latest
+             elsif params[:sort_due_date]
+               Task.due_date_latest
+             else
+               Task.id_oldest
+             end
   end
 
   def show

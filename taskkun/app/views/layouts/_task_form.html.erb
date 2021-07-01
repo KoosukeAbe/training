@@ -10,13 +10,23 @@
     </div>
   <% end %>
 
-  <%= t '.title' %> <%= t.text_field :title %>
-  <br>
-  <%= t '.description' %><%= t.text_field :description %>
-  <br>
-  1<%= t.range_field(:importance, in:1..10) %>10
-  <br>
-  <%= t '.due_date' %><%= t.date_field :due_date %>
-  <br>
-  <%= t.submit %>
+  <div id="input_form">
+    <div class="content">
+      <%= t '.title' %> <%= t.text_field :title %>
+    </div>
+
+    <div class="content">
+      <%= t '.description' %><%= t.text_field :description %>
+    </div>
+
+    <div id="range">
+      1<%= t.range_field(:importance, in:1..10) %>10
+    <div>
+
+    <div class="content">
+      <%= t '.due_date' %><%= t.date_field :due_date %>
+    </div>
+    
+    <%= t.submit %>
+  </div>
 <% end %>
