@@ -3,7 +3,8 @@
   <%= t '.keyword_title' %>
   <%= f.text_field :title, value: @keyword %>
   <%= t '.status_title' %>
-  <%= f.select :status, Task.statuses.map {|k, v| [t("tasks.status_list.#{k}"), v]}, include_blank: true %>
+  <%= f.select :status, Task.statuses.map {|k, v| [t("tasks.status_list.#{k}"), v]}, include_blank: true, selected: @status %>
   <%= f.submit (t '.search_button'), :name => nil %>
-  <%= f.hidden_field :search, value: "true" %>
+  <%= f.hidden_field :category, value: "id" %>
+  <%= f.hidden_field :order, value: "asc" %>
 <% end %>

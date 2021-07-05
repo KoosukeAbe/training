@@ -1,49 +1,38 @@
 class Api::V1::TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  protect_from_forgery except: :destroy
+  protect_from_forgery except: [:destroy, :create, :update]
+
   PER = 5
 
   def index
-    if params[:sort_created]
-      @tasks = Task.created_latest.page(params[:page]).per(PER)
-    elsif params[:sort_due_date]
-      @tasks = Task.due_date_latest.page(params[:page]).per(PER)
-    elsif params[:search]
-      @tasks = Task.where(title: params[:title]).or(Task.where(status_id: params[:status])).page(params[:page]).per(PER)
-      @keyword = params[:title]
-    else
-      @tasks = Task.id_oldest.page(params[:page]).per(PER)
-    end
+    @tasks = Task.order("#{params[:category]} #{params[:order]}")
+                  .page(params[:page])
+                  .where('title LIKE ?', "%#{params[:search]}%")
+                  .per(PER)
 
-    render json: @tasks
-
+    render json: { "tasks" => @tasks, "page" => (Task.count / 5.to_f).ceil }
   end
 
   def show
-  end
-
-  def new
-    @task = Task.new
   end
 
   def create
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to task_path(@task)
+      @tasks = Task.all
+      render json: @tasks
     else
-      render :new
+      render root_path
     end
-  end
-
-  def edit
   end
 
   def update
     if @task.update(task_params)
-      redirect_to task_path(@task)
+      @tasks = Task.all
+      render json: @tasks
     else
-      render :edit
+      render root_path
     end
   end
 
@@ -53,11 +42,13 @@ class Api::V1::TasksController < ApplicationController
 
     @task.destroy
     # model名を指定すると、そのmodelと対応するコントローラーのindexアクションのページに遷移する
-    redirect_to root_path
+    @tasks = Task.all
+    render json: @tasks
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :importance, :due_date, :status_id)
+    logger.debug "記事が正しいかどうか: #{params[:title]}"
+    params.permit(:title, :description, :importance, :due_date, :status_id)
   end
 
   def set_task

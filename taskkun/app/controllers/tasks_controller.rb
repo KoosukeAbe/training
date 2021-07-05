@@ -1,20 +1,34 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
   protect_from_forgery except: :destroy
+
   PER = 5
 
   def index
-    if params[:sort_created]
-      @tasks = Task.created_latest.page(params[:page]).per(PER)
-    elsif params[:sort_due_date]
-      @tasks = Task.due_date_latest.page(params[:page]).per(PER)
-    elsif params[:search]
-      @tasks = Task.where(title: params[:title]).or(Task.where(status_id: params[:status])).page(params[:page]).per(PER)
+    if params[:title].blank? == false && params[:status].blank? == false
+      @tasks = Task.sort_by_title_status(params[:title], params[:status])
+                  .page(params[:page])
+                  .per(PER)
       @keyword = params[:title]
-    else
-      @tasks = Task.id_oldest.page(params[:page]).per(PER)
-    end
+      @status = params[:status]
 
+    elsif params[:title].blank? == false
+      @tasks = Task.where('title LIKE ?', "%#{params[:title]}%")
+                  .page(params[:page])
+                  .per(PER)
+      @keyword = params[:title]
+
+    elsif params[:status].blank? == false
+      @tasks = Task.where(status_id: params[:status])
+                  .page(params[:page])
+                  .per(PER)
+      @status = params[:status]
+
+    else
+      @tasks = Task.order("#{params[:category]} #{params[:order]}")
+                  .page(params[:page])
+                  .per(PER)
+    end
   end
 
   def show

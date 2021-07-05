@@ -5,9 +5,9 @@
 <body>
   <h1><%= t '.title' %></h1>
   <div id="sort_list">
-    <%= link_to (t '.sorted_created_at'), root_path(sort_created: "true") %>
-    <%= link_to (t '.sorted_due_date'), root_path(sort_due_date: "true") %>
-    <%= link_to (t '.sorted_id'), root_path %>
+    <%= link_to (t '.sorted_created_at'), root_path(category: "created_at", order: "desc") %>
+    <%= link_to (t '.sorted_due_date'), root_path(category: "due_date", order: "desc") %>
+    <%= link_to (t '.sorted_id'), root_path(category: "id", order: "asc") %>
   </div>
   <% if @tasks.size != 0 %> 
   <div id="index">
