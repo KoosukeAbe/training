@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   root 'tasks#index'
   resources :tasks
 
-  get '*not_found' => 'errors#routing_error'
-  post '*not_found' => 'errors#routing_error'
-
   namespace :api, { format: 'json' } do
     namespace :v1 do
       resources :tasks
     end
   end
+
+  get '*not_found' => 'errors#routing_error'
+  post '*not_found' => 'errors#routing_error'
 end

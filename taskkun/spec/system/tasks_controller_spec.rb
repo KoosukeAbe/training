@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe TasksController, type: :system do
-  let!(:task1) { create(:task, created_at: DateTime.new(2021, 1, 1, 0, 0, 0).in_time_zone, due_date: '2021-06-01') }
-  let!(:task2) { create(:task, created_at: DateTime.new(2021, 2, 1, 0, 0, 0).in_time_zone, due_date: '2021-07-01') }
-  let!(:task3) { create(:task, created_at: DateTime.new(2021, 3, 1, 0, 0, 0).in_time_zone, due_date: '2021-08-01') }
+  let!(:task1) { create(:task, created_at: DateTime.new(2021, 1, 1, 0, 0, 0).in_time_zone, due_date: '2021-06-01', status_id: 1)}
+  let!(:task2) { create(:task, created_at: DateTime.new(2021, 2, 1, 0, 0, 0).in_time_zone, due_date: '2021-07-01', status_id: 2)}
+  let!(:task3) { create(:task, created_at: DateTime.new(2021, 3, 1, 0, 0, 0).in_time_zone, due_date: '2021-08-01', status_id: 3)}
 
   describe 'Task CRUD' do
     describe 'index' do
@@ -49,6 +49,22 @@ RSpec.describe TasksController, type: :system do
           expect(all('div a')[5].text).to have_content('Task Version13')
         end
       end
+
+      context 'search by title' do
+        it 'input title and push submit' do
+          fill_in 'title', with: 'Task Version16'
+          click_on '検索開始'
+          expect(page).to have_content 'Task Version16'
+        end
+      end
+
+      context 'search by status' do
+        it 'select status and push submit' do
+          select '着手中'
+          click_on '検索開始'
+          expect(page).to have_content 'Task Version20'
+        end
+      end
     end
 
     describe 'show' do
@@ -58,7 +74,7 @@ RSpec.describe TasksController, type: :system do
 
       it 'display task detail' do
         expect(page).to have_content 'タスク詳細'
-        expect(page).to have_content 'Task Version16'
+        expect(page).to have_content 'Task Version22'
       end
 
       context 'go to the edit page' do
@@ -143,7 +159,7 @@ RSpec.describe TasksController, type: :system do
           click_on submit
 
           expect(page).to have_content('エラｱｱｱｱｱｱｱｱｱ')
-          expect(page).to have_content('Due dateは不正な値です')
+          expect(page).to have_content('Due dateの日付が不正です')
         end
       end
     end
